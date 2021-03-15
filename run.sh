@@ -1,5 +1,7 @@
 #!/bin/bash
 
+AVATAR="https://github.com/actions.png"
+
 EMBED_COLOR=15158332
 STATUS_MESSAGE="Failed"
 
@@ -8,7 +10,14 @@ COMMITTER_NAME="$(git log -1 "$GITHUB_SHA" --pretty="%cN")"
 COMMIT_SUBJECT="$(git log -1 "$GITHUB_SHA" --pretty="%s")"
 COMMIT_MESSAGE="$(git log -1 "$GITHUB_SHA" --pretty="%b")" | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g'
 COMMIT_URL="https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-
+echo "Author"
+echo $AUTHOR_NAME
+echo "Commit_message"
+echo $COMMIT_MESSAGE
+echo "COMMITTER _NAME"
+echo $COMMITTER_NAME
+echo "OCMMIT_URL"
+echo $COMMIT_URL
 # If, for example, $GITHUB_REF = refs/heads/feature/example-branch
 # Then this sed command returns: feature/example-branch
 BRANCH_NAME="$(echo $GITHUB_REF | sed 's/^[^/]*\/[^/]*\///g')"
@@ -49,7 +58,7 @@ WEBHOOK_DATA='{
   "embeds": [ {
     "color": '$EMBED_COLOR',
     "author": {
-      "name": "'"$STATUS_MESSAGE"': '"$WORKFLOW_NAME"' ('"${HOOK_OS_NAME}"') - '"$GITHUB_REPOSITORY"'",
+      "name": "'"$STATUS_MESSAGE"': '"$WORKFLOW_NAME"' - '"$GITHUB_REPOSITORY"'",
       "url": "'$ACTION_URL'",
       "icon_url": "'$AVATAR'"
     },

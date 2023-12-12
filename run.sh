@@ -20,7 +20,7 @@ echo "OCMMIT_URL"
 echo $COMMIT_URL
 # If, for example, $GITHUB_REF = refs/heads/feature/example-branch
 # Then this sed command returns: feature/example-branch
-BRANCH_NAME="$(echo $GITHUB_REF | sed 's/^[^/]*\/[^/]*\///g')"
+BRANCH_NAME="$(echo $BRANCH)"
 REPO_URL="https://github.com/$GITHUB_REPOSITORY"
 BRANCH_OR_PR="Branch"
 BRANCH_OR_PR_URL="$REPO_URL/tree/$BRANCH_NAME"

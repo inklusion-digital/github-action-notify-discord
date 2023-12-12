@@ -5,6 +5,10 @@ inputs:
     description: 'Webhook URL of discord server'
     required: true
     default: '-'
+  branch:
+    description: 'Branch the failure happend on'
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -13,5 +17,6 @@ runs:
         JOB_STATUS: ${{ job.status }}
         HOOK_OS_NAME: ${{ runner.os }}
         WORKFLOW_NAME: ${{ github.workflow }}
+        BRANCH: ${{ inputs.branch }}
       run: ${{ github.action_path }}/run.sh ${{ inputs.discord-webhook }}
       shell: bash
